@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign Up | Ceylon Kitchen</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      backdrop-filter: blur(4px);
+    }
+    .auth-container { display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; }
+    .auth-card {
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 16px;
+      padding: 40px;
+      width: 350px;
+      color: #fff;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(20px);
+      text-align: center;
+    }
+    .auth-title { font-size: 1.8em; margin-bottom: 8px; }
+    .auth-subtitle { font-size: 0.95em; color: #e0e0e0; margin-bottom: 20px; }
+    .form-group { text-align: left; margin-bottom: 15px; }
+    .form-group label { font-size: 0.9em; margin-bottom: 5px; display: block; }
+    .form-group input {
+      width: 100%; padding: 10px 12px; border: none; border-radius: 8px;
+      background-color: rgba(255, 255, 255, 0.2); color: #fff; outline: none; font-size: 0.95em;
+    }
+    .form-group input::placeholder { color: #ddd; }
+    .form-group input:focus { background-color: rgba(255, 255, 255, 0.3); }
+    .checkbox { text-align: left; margin-bottom: 15px; }
+    .checkbox label { font-size: 0.9em; }
+    .btn {
+      width: 100%; background-color: #7f4bff; border: none; padding: 12px;
+      color: #fff; font-weight: 600; border-radius: 8px; cursor: pointer; transition: 0.3s ease;
+    }
+    .btn:hover { background-color: #9468ff; }
+    .switch-text { margin-top: 15px; font-size: 0.9em; }
+    .switch-text a { color: #fff; text-decoration: underline; }
+    .error { color: #ffbdbd; font-size: 0.8em; display: block; margin-top: 3px; }
+    #toast {
+      visibility: hidden; min-width: 250px; margin-left: -125px; background-color: #7f4bff;
+      color: #fff; text-align: center; border-radius: 8px; padding: 14px;
+      position: fixed; z-index: 1; left: 50%; bottom: 30px; font-size: 0.95em;
+      transition: opacity 0.5s, bottom 0.5s;
+    }
+    #toast.show { visibility: visible; bottom: 50px; opacity: 1; }
+  </style>
+</head>
+<body>
+  <div class="auth-container">
+    <div class="auth-card">
+      <h1 class="auth-title">Create Your Account</h1>
+      <p class="auth-subtitle">Join Ceylon Kitchen family today 🍴</p>
+
+      <form id="signupForm" onsubmit="return validateSignup(event)">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" id="signupName" placeholder="Enter your full name" required />
+          <small class="error" id="signupNameError"></small>
+        </div>
+
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="signupEmail" placeholder="your.email@example.com" required />
+          <small class="error" id="signupEmailError"></small>
+        </div>
+
+        <div class="form-group">
+          <label>Mobile Number (+94)</label>
+          <input type="tel" id="signupPhone" placeholder="77 123 4567" required />
+          <small class="error" id="signupPhoneError"></small>
+        </div>
+
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="signupPassword" placeholder="Create a strong password" required />
+          <small class="error" id="signupPasswordError"></small>
+        </div>
+
+        <div class="form-group">
+          <label>Confirm Password</label>
+          <input type="password" id="signupConfirmPassword" placeholder="Re-enter password" required />
+          <small class="error" id="signupConfirmPasswordError"></small>
+        </div>
+
+        <div class="checkbox">
+          <input type="checkbox" id="agreeTerms" required />
+          <label for="agreeTerms">I agree to the Terms & Conditions</label>
+        </div>
+
+        <button type="submit" class="btn">Create Account</button>
+      </form>
+
+      <p class="switch-text">
+        Already have an account? <a href="login.html">Login here</a>
+      </p>
+    </div>
+  </div>
+
+  <div id="toast"></div>
+
+  <script>
+    function showToast(message) {
+      const toast = document.getElementById("toast");
+      toast.textContent = message;
+      toast.className = "show";
+      setTimeout(() => { toast.className = toast.className.replace("show", ""); }, 3000);
+    }
+
+    function validateSignup(event) {
+      event.preventDefault();
+      const name = document.getElementById("signupName").value.trim();
+      const email = document.getElementById("signupEmail").value.trim();
+      const phone = document.getElementById("signupPhone").value.trim();
+      const password = document.getElementById("signupPassword").value;
+      const confirmPassword = document.getElementById("signupConfirmPassword").value;
+      const agree = document.getElementById("agreeTerms").checked;
+
+      let valid = true;
+
+      document.getElementById("signupNameError").textContent = "";
+      document.getElementById("signupEmailError").textContent = "";
+      document.getElementById("signupPhoneError").textContent = "";
+      document.getElementById("signupPasswordError").textContent = "";
+      document.getElementById("signupConfirmPasswordError").textContent = "";
+
+      if (name.length < 3) {
+        document.getElementById("signupNameError").textContent = "Name must be at least 3 characters.";
+        valid = false;
+      }
+
+      if (!email.includes("@")) {
+        document.getElementById("signupEmailError").textContent = "Invalid email format.";
+        valid = false;
+      }
+
+      if (!/^[0-9]{2} [0-9]{3} [0-9]{4}$/.test(phone)) {
+        document.getElementById("signupPhoneError").textContent = "Use format: 77 123 4567";
+        valid = false;
+      }
+
+      if (password.length < 6) {
+        document.getElementById("signupPasswordError").textContent = "Password must be at least 6 characters.";
+        valid = false;
+      }
+
+      if (password !== confirmPassword) {
+        document.getElementById("signupConfirmPasswordError").textContent = "Passwords do not match.";
+        valid = false;
+      }
+
+      if (!agree) {
+        showToast("You must agree to the Terms & Conditions.");
+        valid = false;
+      }
+
+      if (valid) {
+        showToast("Account created successfully!");
+        // You can handle signup logic here
+      }
+
+      return false;
+    }
+  </script>
+</body>
+</html>
