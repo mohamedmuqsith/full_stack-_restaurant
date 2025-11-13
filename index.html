@@ -1,75 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ceylon Kitchen - Smooth Mobile Menu</title>
-    
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
-    <link rel="stylesheet" href="home.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ceylon Kitchen Restaurant</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+  <link rel="stylesheet" href="home.css">
 </head>
-
 <body>
 
-<header>
+  <!-- NAVBAR -->
+  <header>
     <nav class="navbar">
-        
-        <!-- Left Logo -->
-        <div class="logo">
-            <img src="images/reslogo.png" alt="Ceylon Kitchen Logo">
-            <span>Ceylon Kitchen</span>
-        </div>
+      <div class="logo">
+        <img src="images/logo.png" alt="Ceylon Kitchen Logo" />
+        <span>Ceylon Kitchen</span>
+      </div>
 
-        <!-- Desktop Menu -->
-        <ul class="nav-links">
-            <li>Home</li>
-            <li>Menu</li>
-            <li>About Us</li>
-            <li>Contact</li>
-        </ul>
+      <ul class="nav-links">
+        <li class="active"><a style="text-decoration: none; color: inherit;" href="index.html">Home</a></li>
+        <li><a style="text-decoration: none; color: inherit;" href="menu.html">Menu</a></li>
+        <li><a style="text-decoration: none; color: inherit;" href="about.html">About Us</a></li>
+        <li><a style="text-decoration: none; color: inherit;" href="contact.html">Contact Us</a></li>
+      </ul>
 
-        <!-- Button -->
-        <div class="nav-btn">
-            <button>Order Now</button>
-        </div>
+      <div class="nav-btn">
+        <button>Order Now</button>
+      </div>
 
-        <!-- Mobile Menu Icon -->
-        <div class="menu-icon">
-            <i class="fa-solid fa-bars"></i>
-        </div>
-
+      <div class="menu-icon">
+        <i class="fa-solid fa-bars"></i>
+      </div>
     </nav>
-</header>
+  </header>
 
-<!-- Mobile Menu Dropdown -->
-<div class="mobile-menu">
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu">
     <ul>
-        <li>Home</li>
-        <li>Menu</li>
-        <li>About Us</li>
-        <li>Contact</li>
+      <li>Home</li>
+      <li>Menu</li>
+      <li>About Us</li>
+      <li>Contact Us</li>
     </ul>
     <button class="mobile-btn">Order Now</button>
-</div>
+  </div>
 
-
-<section>
-    <div class="sales-image">
-        <img src="images/display_cen.jpg" alt="sale image" />
-      <div class="sales-image__offer">
-        <h1>Authentic Italian Cuisine, Crafted with 
-                    Passion </h1>
-      </div>
-      <div class="sales-button">
-        <button>Hello</button>
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <img src="images/display_cen.jpg" alt="Restaurant Interior" />
+    <div class="hero-text">
+      <h1>Authentic Italian Cuisine, Crafted with Passion</h1>
+      <p>Experience the taste of tradition in every bite</p>
+      <div class="hero-buttons">
+        <button class="btn-primary">View Menu</button>
+        <button class="btn-secondary">Make a Reservation</button>
       </div>
     </div>
-</section>
+  </section>
 
-<script src="home.js">
-   
-</script>
+  <!-- FEATURED DISHES -->
+  <section class="featured">
+    <h2>Our Featured Dishes</h2>
+    <div class="dish-container">
+      <div class="dish-card">
+        <img src="images/product-1.jpg" alt="Classic Burger" />
+        <h3>Classic Burger</h3>
+        <p>$15.99</p>
+      </div>
+      <div class="dish-card">
+        <img src="images/product-4.jpg" alt="Puff Pastry" />
+        <h3>Puff Pastry</h3>
+        <p>$12.99</p>
+      </div>
+      <div class="dish-card">
+        <img src="images/product-3.jpg" alt="Doughnuts" />
+        <h3>Doughnuts</h3>
+        <p>$14.99</p>
+      </div>
+    </div>
+  </section>
 
+  <!-- CUSTOMER REVIEWS -->
+  <section class="reviews">
+    <h2>What Our Customers Say</h2>
+    <div class="review-container">
+      <div class="review-card">
+        <p>⭐️⭐️⭐️⭐️⭐️<br><br>The best Italian food I've had outside of Italy. Perfect for a date night!</p>
+      </div>
+      <div class="review-card">
+        <p>⭐️⭐️⭐️⭐️⭐️<br><br>Amazing taste and cozy atmosphere. Highly recommended!</p>
+      </div>
+      <div class="review-card">
+        <p>⭐️⭐️⭐️⭐️⭐️<br><br>Great ambiance and delicious food. I'll definitely come again!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPECIAL OFFER -->
+  <section class="special">
+    <div class="special-box">
+      <h3>Weekday Lunch Special</h3>
+      <p>Enjoy a two-course meal for just $25. Monday to Friday, 12 PM – 3 PM.</p>
+      <button>Book Your Table</button>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-about">
+        <h3>Ceylon Kitchen Restaurant</h3>
+        <p>Experience fine authentic Italian cuisine. Made fresh daily with hand-picked ingredients and timeless tradition.</p>
+      </div>
+      <div class="footer-contact">
+        <h4>Contact Us</h4>
+        <p>123 Paradise Lane, Female City</p>
+        <p>Email: info@ceylonkitchen.com</p>
+        <p>Phone: +94 77 123 4567</p>
+      </div>
+      <div class="footer-hours">
+        <h4>Hours</h4>
+        <p>Mon–Fri: 12:00 PM - 10:00 PM</p>
+        <p>Sat–Sun: 10:00 AM - 11:00 PM</p>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2025 Ceylon Kitchen Restaurant | All Rights Reserved</div>
+  </footer>
+
+  <script src="home.js">
+
+  </script>
 </body>
 </html>
