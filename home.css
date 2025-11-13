@@ -265,6 +265,21 @@
         transition: transform 0.3s ease, box-shadow 0.3s ease;
         cursor: pointer;
     }
+    .dish-card button{
+        background-color: #fd5b91;
+       
+        padding: 10px 25px;
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        
+    }
+    .dish-card button .button{
+        text-decoration: none;
+         color: white;  
+    }
 
     .dish-card:hover {
         transform: translateY(-10px);
