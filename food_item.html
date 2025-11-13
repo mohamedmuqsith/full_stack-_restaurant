@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Individual Food Items Page</title>
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+    <link rel="stylesheet" href="food_item.css">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header>
+    <nav class="navbar">
+        
+        <!-- Left Logo -->
+        <div class="logo">
+            <img src="images/reslogo.png" alt="Ceylon Kitchen Logo">
+            <span>Ceylon Kitchen</span>
+        </div>
+
+        <!-- Desktop Menu -->
+        <ul class="nav-links">
+            <li onclick="goToHome()">Home</li>
+            <li onclick="goToMenu()">Menu</li>
+            <li>About Us</li>
+            <li>Contact</li>
+        </ul>
+
+        <!-- Button -->
+        <div class="nav-btn">
+            <button onclick="goToOrder()">Order Now</button>
+        </div>
+
+        <!-- Mobile Menu Icon -->
+        <div class="menu-icon">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+
+    </nav>
+</header>
+
+<!-- Mobile Menu Dropdown -->
+<div class="mobile-menu">
+    <ul>
+        <li onclick="goToHome()">Home</li>
+        <li onclick="goToMenu()">Menu</li>
+        <li>About Us</li>
+        <li>Contact</li>
+    </ul>
+    <button class="mobile-btn" onclick="goToOrder()">Order Now</button>
+</div>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb-section">
+    <div class="breadcrumb">
+        <span onclick="goToHome()">Home</span>
+        <span>/</span>
+        <span onclick="goToMenu()">Menu</span>
+        <span>/</span>
+        <span>Item Details</span>
+    </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<main class="food-item-container">
+    
+    <!-- LEFT SIDE - FOOD IMAGE -->
+    <div class="food-image-section">
+        <div class="food-image-wrapper">
+            <img src="images/product-1.jpg" alt="Food Item" class="food-image" id="foodImage">
+        </div>
+    </div>
+
+    <!-- RIGHT SIDE - FOOD DETAILS -->
+    <div class="food-details-section">
+        
+        <!-- BACK BUTTON & CLOSE -->
+        <div class="food-header-top">
+            <button class="back-btn" onclick="goBack()">
+                <i class="fas fa-arrow-left"></i> Back
+            </button>
+            <button class="close-btn" onclick="closeItem()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <!-- FOOD TITLE & PRICE -->
+        <div class="food-title-section">
+            <h1 class="food-title" id="foodTitle">The Classic Burger</h1>
+            <p class="food-price" id="foodPrice">$15.99</p>
+        </div>
+
+        <!-- FOOD DESCRIPTION -->
+        <div class="food-description">
+            <p id="foodDescription">
+                A delicious handmade burger made with premium beef, topped with melted cheddar cheese, fresh lettuce, 
+                juicy tomato, crispy bacon, and our special sauce. Served with crispy fries and a refreshing drink. 
+                Perfect for lunch or dinner!
+            </p>
+        </div>
+
+        <!-- TAGS -->
+        <div class="food-tags">
+            <span class="tag" id="tag1">Beef Patty</span>
+            <span class="tag" id="tag2">Cheddar Cheese</span>
+            <span class="tag" id="tag3">Lettuce</span>
+        </div>
+
+        <!-- AVAILABILITY -->
+        <div class="food-availability">
+            <label>Availability:</label>
+            <select id="availability" class="availability-select">
+                <option value="in-stock">In Stock</option>
+                <option value="out-stock">Out of Stock</option>
+                <option value="limited">Limited</option>
+            </select>
+        </div>
+
+        <!-- QUANTITY SECTION -->
+        <div class="food-quantity-section">
+            <label>Quantity:</label>
+            <div class="quantity-selector">
+                <button class="qty-btn" onclick="decreaseQty()">−</button>
+                <input type="number" id="quantityInput" class="qty-input" value="1" min="1">
+                <button class="qty-btn" onclick="increaseQty()">+</button>
+            </div>
+        </div>
+
+        <!-- ADD TO CART BUTTON -->
+        <button class="add-to-cart-btn" onclick="addToCart()">Add to Cart</button>
+
+    </div>
+
+</main>
+
+<!-- RELATED ITEMS SECTION -->
+<section class="related-items-section">
+    
+    <h2 class="related-title">You Might Also Like</h2>
+
+    <div class="related-items-grid">
+        
+        <!-- Item 1 -->
+        <div class="related-item-card" onclick="loadFoodItem(2)">
+            <div class="related-item-image">
+                <img src="images/product-2.jpg" alt="Brownies">
+            </div>
+            <div class="related-item-info">
+                <h3 class="related-item-name">Brownies</h3>
+                <p class="related-item-price">$20.99</p>
+            </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="related-item-card" onclick="loadFoodItem(3)">
+            <div class="related-item-image">
+                <img src="images/product-3.jpg" alt="Puff Pastry">
+            </div>
+            <div class="related-item-info">
+                <h3 class="related-item-name">Puff Pastry</h3>
+                <p class="related-item-price">$12.99</p>
+            </div>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="related-item-card" onclick="loadFoodItem(4)">
+            <div class="related-item-image">
+                <img src="images/product-4.jpg" alt="Doughnuts">
+            </div>
+            <div class="related-item-info">
+                <h3 class="related-item-name">Doughnuts</h3>
+                <p class="related-item-price">$14.99</p>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h4>Ceylon Kitchen Restaurant</h4>
+            <p>Experience authentic Ceylon cuisine with modern twist, delivering delicious food with exceptional service.</p>
+        </div>
+        <div class="footer-section">
+            <h4>Contact Us</h4>
+            <p>Email: info@ceylonkitchen.com</p>
+            <p>Phone: +1 800-KITCHEN</p>
+        </div>
+        <div class="footer-section">
+            <h4>Hours</h4>
+            <p>Mon-Thu: 11am-10pm</p>
+            <p>Fri-Sun: 11am-12am</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 Ceylon Kitchen. All rights reserved.</p>
+    </div>
+</footer>
+
+<script src="food_item.js"></script>
+
+</body>
+</html>
