@@ -3,9 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fuchius</title>
+    <title>Ceylon Kitchen - Smooth Mobile Menu</title>
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+    <link rel="stylesheet" href="home.css">
 </head>
+
 <body>
-    <h1>Hello World</h1>
+
+<header>
+    <nav class="navbar">
+        
+        <!-- Left Logo -->
+        <div class="logo">
+            <img src="images/reslogo.png" alt="Ceylon Kitchen Logo">
+            <span>Ceylon Kitchen</span>
+        </div>
+
+        <!-- Desktop Menu -->
+        <ul class="nav-links">
+            <li>Home</li>
+            <li>Menu</li>
+            <li>About Us</li>
+            <li>Contact</li>
+        </ul>
+
+        <!-- Button -->
+        <div class="nav-btn">
+            <button>Order Now</button>
+        </div>
+
+        <!-- Mobile Menu Icon -->
+        <div class="menu-icon">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+
+    </nav>
+</header>
+
+<!-- Mobile Menu Dropdown -->
+<div class="mobile-menu">
+    <ul>
+        <li>Home</li>
+        <li>Menu</li>
+        <li>About Us</li>
+        <li>Contact</li>
+    </ul>
+    <button class="mobile-btn">Order Now</button>
+</div>
+
+<script>
+    const menuIcon = document.querySelector(".menu-icon");
+    const mobileMenu = document.querySelector(".mobile-menu");
+
+    menuIcon.addEventListener("click", () => {
+        mobileMenu.classList.toggle("active");
+    });
+</script>
+
 </body>
 </html>
