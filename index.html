@@ -3,135 +3,105 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ceylon Kitchen Restaurant</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
-  <link rel="stylesheet" href="home.css">
+  <title>Ceylon Kitchen - Login & Signup</title>
+  <link rel="stylesheet" href="auth.css">
+  
 </head>
 <body>
+  <div class="container">
+    <div class="tabs">
+      <div class="tab active" data-tab="login">Login</div>
+      <div class="tab" data-tab="signup">Sign Up</div>
+    </div>
 
-  <!-- NAVBAR -->
-  <header>
-    <nav class="navbar">
-      <div class="logo">
-        <img src="images/logo.png" alt="Ceylon Kitchen Logo" />
-        <span>Ceylon Kitchen</span>
+    <div class="form-container">
+      <!-- Login Form -->
+      <div class="form-content active" id="login-form">
+        <div class="welcome-text">
+          <h2>Welcome Back! 👋</h2>
+          <p>Please enter your details to sign in</p>
+        </div>
+
+        <form id="loginForm">
+          <div class="form-group">
+            <label for="loginEmail">Email Address</label>
+            <input type="email" id="loginEmail" placeholder="your.email@example.com" />
+            <div class="error-message" id="loginEmailError"></div>
+          </div>
+
+          <div class="form-group">
+            <label for="loginPassword">Password</label>
+            <input type="password" id="loginPassword" placeholder="Enter your password" />
+            <div class="error-message" id="loginPasswordError"></div>
+          </div>
+
+          <div class="checkbox-group">
+            <div class="checkbox-wrapper">
+              <input type="checkbox" id="rememberMe" />
+              <label for="rememberMe">Remember me</label>
+            </div>
+            <a href="#" class="forgot-password">Forgot Password?</a>
+          </div>
+
+          <button type="submit" class="submit-btn">Login</button>
+        </form>
+
+        <div class="switch-text">
+          Don't have an account? <a class="switch-link" data-target="signup">Sign Up</a>
+        </div>
       </div>
 
-      <ul class="nav-links">
-        <li class="active"><a style="text-decoration: none; color: inherit;" href="index.html">Home</a></li>
-        <li><a style="text-decoration: none; color: inherit;" href="menu.html">Menu</a></li>
-        <li><a style="text-decoration: none; color: inherit;" href="about.html">About Us</a></li>
-        <li><a style="text-decoration: none; color: inherit;" href="contact.html">Contact Us</a></li>
-      </ul>
+      <!-- Signup Form -->
+      <div class="form-content" id="signup-form">
+        <div class="welcome-text">
+          <h2>Create Account 🍲</h2>
+          <p>Join Ceylon Kitchen today</p>
+        </div>
 
-      <div class="nav-btn">
-        <button>Order Now</button>
+        <form id="signupForm">
+          <div class="form-group">
+            <label for="signupUsername">Username</label>
+            <input type="text" id="signupUsername" placeholder="Choose a username" />
+            <div class="error-message" id="signupUsernameError"></div>
+          </div>
+
+          <div class="form-group">
+            <label for="signupEmail">Email Address</label>
+            <input type="email" id="signupEmail" placeholder="your.email@example.com" />
+            <div class="error-message" id="signupEmailError"></div>
+          </div>
+
+          <div class="form-group">
+            <label for="signupPhone">Phone Number</label>
+            <input type="tel" id="signupPhone" placeholder="+94 77 123 4567" />
+            <div class="error-message" id="signupPhoneError"></div>
+          </div>
+
+          <div class="form-group">
+            <label for="signupPassword">Password</label>
+            <input type="password" id="signupPassword" placeholder="Create a strong password" />
+            <div class="error-message" id="signupPasswordError"></div>
+          </div>
+
+          <div class="checkbox-group">
+            <div class="checkbox-wrapper">
+              <input type="checkbox" id="rememberSignup" />
+              <label for="rememberSignup">Remember me</label>
+            </div>
+          </div>
+
+          <button type="submit" class="submit-btn">Sign Up</button>
+        </form>
+
+        <div class="switch-text">
+          Already have an account? <a class="switch-link" data-target="login">Login</a>
+        </div>
       </div>
-
-      <div class="menu-icon">
-        <i class="fa-solid fa-bars"></i>
-      </div>
-    </nav>
-  </header>
-
-  <!-- MOBILE MENU -->
-  <div class="mobile-menu">
-    <ul>
-      <li>Home</li>
-      <li>Menu</li>
-      <li>About Us</li>
-      <li>Contact Us</li>
-    </ul>
-    <button class="mobile-btn">Order Now</button>
+    </div>
   </div>
 
-  <!-- HERO SECTION -->
-  <section class="hero">
-    <img src="images/display_cen.jpg" alt="Restaurant Interior" />
-    <div class="hero-text">
-      <h1>Authentic Italian Cuisine, Crafted with Passion</h1>
-      <p>Experience the taste of tradition in every bite</p>
-      <div class="hero-buttons">
-        <button class="btn-primary">View Menu</button>
-        <button class="btn-secondary">Make a Reservation</button>
-      </div>
-    </div>
-  </section>
+  <div class="toast" id="toast"></div>
 
-  <!-- FEATURED DISHES -->
-  <section class="featured">
-    <h2>Our Featured Dishes</h2>
-    <div class="dish-container">
-      <div class="dish-card">
-        <img src="images/product-1.jpg" alt="Classic Burger" />
-        <h3>Classic Burger</h3>
-        <p>$15.99</p>
-        <button><a class="button" href="food_item.html">Book Now</a></button>
-      </div>
-      <div class="dish-card">
-        <img src="images/product-4.jpg" alt="Puff Pastry" />
-        <h3>Puff Pastry</h3>
-        <p>$12.99</p>
-                 <button><a class="button" href="food_item.html">Book Now</a></button>
-      </div>
-      <div class="dish-card">
-        <img src="images/product-3.jpg" alt="Doughnuts" />
-        <h3>Doughnuts</h3>
-        <p>$14.99</p>
-               <button><a class="button" href="food_item.html">Book Now</a></button>
-      </div>
-    </div>
-  </section>
-
-  <!-- CUSTOMER REVIEWS -->
-  <section class="reviews">
-    <h2>What Our Customers Say</h2>
-    <div class="review-container">
-      <div class="review-card">
-        <p>⭐️⭐️⭐️⭐️⭐️<br><br>The best Italian food I've had outside of Italy. Perfect for a date night!</p>
-      </div>
-      <div class="review-card">
-        <p>⭐️⭐️⭐️⭐️⭐️<br><br>Amazing taste and cozy atmosphere. Highly recommended!</p>
-      </div>
-      <div class="review-card">
-        <p>⭐️⭐️⭐️⭐️⭐️<br><br>Great ambiance and delicious food. I'll definitely come again!</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- SPECIAL OFFER -->
-  <section class="special">
-    <div class="special-box">
-      <h3>Weekday Lunch Special</h3>
-      <p>Enjoy a two-course meal for just $25. Monday to Friday, 12 PM – 3 PM.</p>
-      <button>Book Your Table</button>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-container">
-      <div class="footer-about">
-        <h3>Ceylon Kitchen Restaurant</h3>
-        <p>Experience fine authentic Italian cuisine. Made fresh daily with hand-picked ingredients and timeless tradition.</p>
-      </div>
-      <div class="footer-contact">
-        <h4>Contact Us</h4>
-        <p>123 Paradise Lane, Female City</p>
-        <p>Email: info@ceylonkitchen.com</p>
-        <p>Phone: +94 77 123 4567</p>
-      </div>
-      <div class="footer-hours">
-        <h4>Hours</h4>
-        <p>Mon–Fri: 12:00 PM - 10:00 PM</p>
-        <p>Sat–Sun: 10:00 AM - 11:00 PM</p>
-      </div>
-    </div>
-    <div class="footer-bottom">© 2025 Ceylon Kitchen Restaurant | All Rights Reserved</div>
-  </footer>
-
-  <script src="home.js">
-
-  </script>
+  <script src="auth.js"></script>
 </body>
 </html>
