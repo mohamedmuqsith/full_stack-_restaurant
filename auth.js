@@ -1,5 +1,4 @@
-
-    // User storage
+  // User storage
     const users = {};
 
     // Load users from memory on page load
@@ -142,7 +141,7 @@
           // Save current session
           sessionStorage.setItem('ceylon_current_user', JSON.stringify(users[email]));
           
-          // Redirect to index.html
+          // Redirect to home.html
           setTimeout(() => {
             window.location.href = 'home.html';
           }, 1500);
