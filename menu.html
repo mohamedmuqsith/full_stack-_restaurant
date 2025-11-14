@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Menu - Ceylon Kitchen Restaurant</title>
+    <link rel="stylesheet" href="menu.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">Ceylon Kitchen Restaurant</div>
+            <button class="mobile-menu-toggle" onclick="toggleMenu()">☰</button>
+            <nav id="mainNav">
+                <a href="#home">Home</a>
+                <a href="#menu" class="active">Menu</a>
+                <a href="#about">About Us</a>
+                <a href="#contact">Contact us</a>
+            </nav>
+            <div class="cart-icon"></div>
+        </header>
+
+        <div class="menu-header">
+            <h1 class="menu-title">Our Menu</h1>
+            <p class="menu-subtitle">Explore our delicious dishes, crafted with the freshest ingredients.</p>
+        </div>
+
+        <div class="category-tabs">
+            <button class="tab active">All</button>
+            <button class="tab">Breakfast</button>
+            <button class="tab">Lunch</button>
+            <button class="tab">Dinner</button>
+            <button class="tab">Desserts</button>
+            <button class="tab">Drinks</button>
+        </div>
+
+        <div class="menu-grid">
+            <div class="menu-item">
+                <div class="item-image-wrapper">
+                    <img src="images/Hawaiian pizza.jpg" alt="Brownies" class="item-image">
+                </div>
+                <div class="item-details">
+                    <div class="item-name">Hawaiian pizza</div>
+                    <div class="item-price">$30.99</div>
+                    <button class="order-btn">Order Now</button>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-image-wrapper">
+                    <img src="images/Taco.jpg" alt="Puff Pastry" class="item-image">
+                </div>
+                <div class="item-details">
+                    <div class="item-name">Taco</div>
+                    <div class="item-price">$9.99</div>
+                    <button class="order-btn">Order Now</button>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-image-wrapper">
+                    <img src="images/Duble Buger.jpg" alt="Doughnuts" class="item-image">
+                </div>
+                <div class="item-details">
+                    <div class="item-name">Double burger</div>
+                    <div class="item-price">$19.99</div>
+                    <button class="order-btn">Order Now</button>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-image-wrapper">
+                    <img src="images/Browni.jpg" alt="Brownies" class="item-image">
+                </div>
+                <div class="item-details">
+                    <div class="item-name">Brownies</div>
+                    <div class="item-price">$20.99</div>
+                    <button class="order-btn">Order Now</button>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-image-wrapper">
+                    <img src="images/Puff Pastry.jpg" alt="Puff Pastry" class="item-image">
+                </div>
+                <div class="item-details">
+                    <div class="item-name">Puff Pastry</div>
+                    <div class="item-price">$12.99</div>
+                    <button class="order-btn">Order Now</button>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-image-wrapper">
+                    <img src="images/Doughnuts.jpg" alt="Doughnuts" class="item-image">
+                </div>
+                <div class="item-details">
+                    <div class="item-name">Doughnuts</div>
+                    <div class="item-price">$14.99</div>
+                    <button class="order-btn">Order Now</button>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Ceylon Kitchen Restaurant</h3>
+                    <p>Experience the true essence of Italian cuisine. We bring Italy's finest flavors to your table with fresh ingredients and timeless traditions.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <div class="contact-item">
+                        <span class="icon">📍</span>
+                        <p>123 Main Lane, Foodie City</p>
+                    </div>
+                    <div class="contact-item">
+                        <span class="icon">📞</span>
+                        <p>+123 456-7890</p>
+                    </div>
+                    <div class="contact-item">
+                        <span class="icon">✉️</span>
+                        <p><a href="mailto:contact@bellacucina.com">contact@bellacucina.com</a></p>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Hours</h3>
+                    <p>Mon-Fri: 12:30pm-10pm</p>
+                    <p>Sat-Sun: 11am-11pm</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Tab functionality
+        const tabs = document.querySelectorAll('.tab');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                tabs.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Mobile menu toggle
+        function toggleMenu() {
+            const nav = document.getElementById('mainNav');
+            nav.classList.toggle('active');
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const nav = document.getElementById('mainNav');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            
+            if (!nav.contains(event.target) && !toggle.contains(event.target)) {
+                nav.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
