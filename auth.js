@@ -144,7 +144,7 @@
           
           // Redirect to index.html
           setTimeout(() => {
-            window.location.href = 'index.html';
+            window.location.href = 'home.html';
           }, 1500);
         } else {
           showToast('Invalid email or password', 'error');
