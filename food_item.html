@@ -7,6 +7,7 @@
     
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+    <link rel="stylesheet" href="home.css" />
     <link rel="stylesheet" href="food_item.css">
 </head>
 
@@ -15,43 +16,38 @@
 <!-- NAVBAR -->
 <header>
     <nav class="navbar">
-        
-        <!-- Left Logo -->
         <div class="logo">
-            <img src="images/reslogo.png" alt="Ceylon Kitchen Logo">
+            <img src="images/logo.png" alt="Ceylon Kitchen Logo" />
             <span>Ceylon Kitchen</span>
         </div>
 
-        <!-- Desktop Menu -->
         <ul class="nav-links">
-            <li onclick="goToHome()">Home</li>
-            <li onclick="goToMenu()">Menu</li>
-            <li>About Us</li>
-            <li>Contact</li>
+            <li><a style="text-decoration: none; color: inherit;" href="home.html">Home</a></li>
+            <li><a style="text-decoration: none; color: inherit;" href="menu.html">Menu</a></li>
+            <li><a style="text-decoration: none; color: inherit;" href="about.html">About Us</a></li>
+            <li><a style="text-decoration: none; color: inherit;" href="contact.html">Contact Us</a></li>
         </ul>
 
-        <!-- Button -->
         <div class="nav-btn">
-            <button onclick="goToOrder()">Order Now</button>
+            <button onclick="window.location.href='cart.html'">Cart</button>
+            <button onclick="window.location.href='orders.html'" style="margin-left: 10px;">My Orders</button>
         </div>
 
-        <!-- Mobile Menu Icon -->
         <div class="menu-icon">
             <i class="fa-solid fa-bars"></i>
         </div>
-
     </nav>
 </header>
 
-<!-- Mobile Menu Dropdown -->
+<!-- MOBILE MENU -->
 <div class="mobile-menu">
     <ul>
-        <li onclick="goToHome()">Home</li>
-        <li onclick="goToMenu()">Menu</li>
-        <li>About Us</li>
-        <li>Contact</li>
+        <li><a style="text-decoration: none; color: inherit;" href="home.html">Home</a></li>
+        <li><a style="text-decoration: none; color: inherit;" href="menu.html">Menu</a></li>
+        <li><a style="text-decoration: none; color: inherit;" href="about.html">About Us</a></li>
+        <li><a style="text-decoration: none; color: inherit;" href="contact.html">Contact Us</a></li>
     </ul>
-    <button class="mobile-btn" onclick="goToOrder()">Order Now</button>
+    <button class="mobile-btn">Order Now</button>
 </div>
 
 <!-- BREADCRUMB -->
@@ -182,29 +178,31 @@
 </section>
 
 <!-- FOOTER -->
-<footer class="footer">
-    <div class="footer-content">
-        <div class="footer-section">
-            <h4>Ceylon Kitchen Restaurant</h4>
-            <p>Experience authentic Ceylon cuisine with modern twist, delivering delicious food with exceptional service.</p>
+<footer>
+    <div class="footer-container">
+        <div class="footer-about">
+            <h3>Ceylon Kitchen Restaurant</h3>
+            <p>Experience fine authentic Italian cuisine. Made fresh daily with hand-picked ingredients and timeless tradition.</p>
         </div>
-        <div class="footer-section">
+        <div class="footer-contact">
             <h4>Contact Us</h4>
+            <p>123 Paradise Lane, Female City</p>
             <p>Email: info@ceylonkitchen.com</p>
-            <p>Phone: +1 800-KITCHEN</p>
+            <p>Phone: +94 77 123 4567</p>
         </div>
-        <div class="footer-section">
+        <div class="footer-hours">
             <h4>Hours</h4>
-            <p>Mon-Thu: 11am-10pm</p>
-            <p>Fri-Sun: 11am-12am</p>
+            <p>Mon–Fri: 12:00 PM - 10:00 PM</p>
+            <p>Sat–Sun: 10:00 AM - 11:00 PM</p>
         </div>
     </div>
-    <div class="footer-bottom">
-        <p>&copy; 2025 Ceylon Kitchen. All rights reserved.</p>
-    </div>
+    <div class="footer-bottom">© 2025 Ceylon Kitchen Restaurant | All Rights Reserved</div>
 </footer>
 
+<script src="api.js"></script>
 <script src="food_item.js"></script>
+<script src="home.js"></script>
 
 </body>
+</html>
 </html>

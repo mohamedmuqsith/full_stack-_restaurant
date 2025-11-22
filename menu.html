@@ -4,21 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Menu - Ceylon Kitchen Restaurant</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+    <link rel="stylesheet" href="home.css" />
     <link rel="stylesheet" href="menu.css">
 </head>
 <body>
+    <!-- NAVBAR -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="images/logo.png" alt="Ceylon Kitchen Logo" />
+                <span>Ceylon Kitchen</span>
+            </div>
+
+            <ul class="nav-links">
+                <li><a style="text-decoration: none; color: inherit;" href="home.html">Home</a></li>
+                <li class="active"><a style="text-decoration: none; color: inherit;" href="menu.html">Menu</a></li>
+                <li><a style="text-decoration: none; color: inherit;" href="about.html">About Us</a></li>
+                <li><a style="text-decoration: none; color: inherit;" href="contact.html">Contact Us</a></li>
+            </ul>
+
+            <div class="nav-btn">
+                <button onclick="window.location.href='cart.html'">Cart</button>
+                <button onclick="window.location.href='orders.html'" style="margin-left: 10px;">My Orders</button>
+            </div>
+
+            <div class="menu-icon">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu">
+        <ul>
+            <li><a style="text-decoration: none; color: inherit;" href="home.html">Home</a></li>
+            <li><a style="text-decoration: none; color: inherit;" href="menu.html">Menu</a></li>
+            <li><a style="text-decoration: none; color: inherit;" href="about.html">About Us</a></li>
+            <li><a style="text-decoration: none; color: inherit;" href="contact.html">Contact Us</a></li>
+        </ul>
+        <button class="mobile-btn">Order Now</button>
+    </div>
+
     <div class="container">
-        <header>
-            <div class="logo">Ceylon Kitchen Restaurant</div>
-            <button class="mobile-menu-toggle" onclick="toggleMenu()">☰</button>
-            <nav id="mainNav">
-                <a href="home.html">Home</a>
-                <a href="menu.html" class="active">Menu</a>
-                <a href="about.html">About Us</a>
-                <a href="contact.html">Contact us</a>
-            </nav>
-            <div class="cart-icon"></div>
-        </header>
 
         <div class="menu-header">
             <h1 class="menu-title">Our Menu</h1>
@@ -102,37 +130,67 @@
             </div>
         </div>
 
+        <!-- FOOTER -->
         <footer>
-            <div class="footer-content">
-                <div class="footer-section">
+            <div class="footer-container">
+                <div class="footer-about">
                     <h3>Ceylon Kitchen Restaurant</h3>
-                    <p>Experience the true essence of Italian cuisine. We bring Italy's finest flavors to your table with fresh ingredients and timeless traditions.</p>
+                    <p>Experience fine authentic Italian cuisine. Made fresh daily with hand-picked ingredients and timeless tradition.</p>
                 </div>
-                <div class="footer-section">
-                    <h3>Contact Us</h3>
-                    <div class="contact-item">
-                        <span class="icon">📍</span>
-                        <p>123 Main Lane, Foodie City</p>
-                    </div>
-                    <div class="contact-item">
-                        <span class="icon">📞</span>
-                        <p>+123 456-7890</p>
-                    </div>
-                    <div class="contact-item">
-                        <span class="icon">✉️</span>
-                        <p><a href="mailto:contact@bellacucina.com">contact@bellacucina.com</a></p>
-                    </div>
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <p>123 Paradise Lane, Female City</p>
+                    <p>Email: info@ceylonkitchen.com</p>
+                    <p>Phone: +94 77 123 4567</p>
                 </div>
-                <div class="footer-section">
-                    <h3>Hours</h3>
-                    <p>Mon-Fri: 12:30pm-10pm</p>
-                    <p>Sat-Sun: 11am-11pm</p>
+                <div class="footer-hours">
+                    <h4>Hours</h4>
+                    <p>Mon–Fri: 12:00 PM - 10:00 PM</p>
+                    <p>Sat–Sun: 10:00 AM - 11:00 PM</p>
                 </div>
             </div>
+            <div class="footer-bottom">© 2025 Ceylon Kitchen Restaurant | All Rights Reserved</div>
         </footer>
     </div>
 
+    <script src="api.js"></script>
     <script>
+        // Check authentication
+        document.addEventListener('DOMContentLoaded', async () => {
+            if (!isAuthenticated()) {
+                window.location.href = 'index.html';
+                return;
+            }
+
+            // Load foods from API
+            await loadMenuItems();
+        });
+
+        // Load menu items from API
+        async function loadMenuItems() {
+            try {
+                const foods = await foodsAPI.getAll();
+                const menuGrid = document.querySelector('.menu-grid');
+                
+                if (menuGrid && foods.length > 0) {
+                    menuGrid.innerHTML = foods.map(food => `
+                        <div class="menu-item">
+                            <div class="item-image-wrapper">
+                                <img src="images/${food.image}" alt="${food.name}" class="item-image">
+                            </div>
+                            <div class="item-details">
+                                <div class="item-name">${food.name}</div>
+                                <div class="item-price">$${food.price.toFixed(2)}</div>
+                                <button class="order-btn" onclick="window.location.href='food_item.html?id=${food.id}'">Order Now</button>
+                            </div>
+                        </div>
+                    `).join('');
+                }
+            } catch (error) {
+                console.error('Error loading menu items:', error);
+            }
+        }
+
         // Tab functionality
         const tabs = document.querySelectorAll('.tab');
         tabs.forEach(tab => {
@@ -142,21 +200,8 @@
             });
         });
 
-        // Mobile menu toggle
-        function toggleMenu() {
-            const nav = document.getElementById('mainNav');
-            nav.classList.toggle('active');
-        }
-
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', function(event) {
-            const nav = document.getElementById('mainNav');
-            const toggle = document.querySelector('.mobile-menu-toggle');
-            
-            if (!nav.contains(event.target) && !toggle.contains(event.target)) {
-                nav.classList.remove('active');
-            }
-        });
+        // Mobile menu toggle (using home.js functionality)
     </script>
+    <script src="home.js"></script>
 </body>
 </html>

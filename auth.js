@@ -1,26 +1,21 @@
-  // User storage
-    const users = {};
-
-    // Load users from memory on page load
-    function loadUsers() {
-      const savedUsers = sessionStorage.getItem('ceylon_users');
-      if (savedUsers) {
-        Object.assign(users, JSON.parse(savedUsers));
-      }
-    }
-
-    // Save users to session
-    function saveUsers() {
-      sessionStorage.setItem('ceylon_users', JSON.stringify(users));
-    }
-
-    // Check for remembered login
+  // Check for remembered login
     function checkRememberedLogin() {
-      const remembered = sessionStorage.getItem('ceylon_remembered');
+      const remembered = localStorage.getItem('ceylon_remembered');
       if (remembered) {
         const userData = JSON.parse(remembered);
         document.getElementById('loginEmail').value = userData.email;
         document.getElementById('rememberMe').checked = true;
+      }
+    }
+
+    // Check if already logged in
+    function checkExistingAuth() {
+      if (isAuthenticated()) {
+        const user = getCurrentUser();
+        if (user) {
+          // Already logged in, redirect to home
+          window.location.href = 'home.html';
+        }
       }
     }
 
@@ -100,7 +95,7 @@
     }
 
     // Login Form
-    document.getElementById('loginForm').addEventListener('submit', (e) => {
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
       e.preventDefault();
       clearAllErrors('login');
 
@@ -127,32 +122,44 @@
       }
 
       if (isValid) {
-        // Check if user exists with correct credentials
-        if (users[email] && users[email].password === password) {
-          showToast('Login successful! Redirecting... 🎉', 'success');
-          
-          // Save remember me
-          if (remember) {
-            sessionStorage.setItem('ceylon_remembered', JSON.stringify({ email }));
-          } else {
-            sessionStorage.removeItem('ceylon_remembered');
-          }
+        try {
+          // Disable submit button
+          const submitBtn = document.querySelector('#loginForm button[type="submit"]');
+          submitBtn.disabled = true;
+          submitBtn.textContent = 'Logging in...';
 
-          // Save current session
-          sessionStorage.setItem('ceylon_current_user', JSON.stringify(users[email]));
+          const response = await authAPI.login(email, password);
           
-          // Redirect to home.html
-          setTimeout(() => {
-            window.location.href = 'home.html';
-          }, 1500);
-        } else {
-          showToast('Invalid email or password', 'error');
+          if (response.success) {
+            showToast('Login successful! Redirecting... 🎉', 'success');
+            
+            // Save remember me
+            if (remember) {
+              localStorage.setItem('ceylon_remembered', JSON.stringify({ email }));
+            } else {
+              localStorage.removeItem('ceylon_remembered');
+            }
+            
+            // Redirect to home.html
+            setTimeout(() => {
+              window.location.href = 'home.html';
+            }, 1500);
+          } else {
+            showToast(response.message || 'Login failed', 'error');
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Login';
+          }
+        } catch (error) {
+          showToast(error.message || 'Login failed. Please try again.', 'error');
+          const submitBtn = document.querySelector('#loginForm button[type="submit"]');
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Login';
         }
       }
     });
 
     // Signup Form - Modified to switch to login after account creation
-    document.getElementById('signupForm').addEventListener('submit', (e) => {
+    document.getElementById('signupForm').addEventListener('submit', async (e) => {
       e.preventDefault();
       clearAllErrors('signup');
 
@@ -178,9 +185,6 @@
       } else if (!isValidEmail(email)) {
         showError('signupEmail', 'Please enter a valid email');
         isValid = false;
-      } else if (users[email]) {
-        showError('signupEmail', 'Email already registered');
-        isValid = false;
       }
 
       if (!phone) {
@@ -200,26 +204,45 @@
       }
 
       if (isValid) {
-        // Create new user
-        users[email] = {
-          username,
-          email,
-          phone,
-          password
-        };
-        
-        saveUsers();
-        showToast('Account created! Please login to continue', 'success');
-        
-        // Clear signup form
-        document.getElementById('signupForm').reset();
-        
-        // Switch to login tab after 1.5 seconds
-        setTimeout(() => {
-          switchTab('login');
-          // Pre-fill email in login form
-          document.getElementById('loginEmail').value = email;
-        }, 1500);
+        try {
+          // Disable submit button
+          const submitBtn = document.querySelector('#signupForm button[type="submit"]');
+          submitBtn.disabled = true;
+          submitBtn.textContent = 'Creating account...';
+
+          const response = await authAPI.signup({ username, email, phone, password });
+          
+          if (response.success) {
+            showToast('Account created! Please login to continue', 'success');
+            
+            // Clear signup form
+            document.getElementById('signupForm').reset();
+            
+            // Switch to login tab after 1.5 seconds
+            setTimeout(() => {
+              switchTab('login');
+              // Pre-fill email in login form
+              document.getElementById('loginEmail').value = email;
+              submitBtn.disabled = false;
+              submitBtn.textContent = 'Sign Up';
+            }, 1500);
+          } else {
+            // Show error message
+            const errorMessage = response.message || 'Signup failed';
+            if (errorMessage.includes('Email already registered')) {
+              showError('signupEmail', 'Email already registered');
+            } else {
+              showToast(errorMessage, 'error');
+            }
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Sign Up';
+          }
+        } catch (error) {
+          showToast(error.message || 'Signup failed. Please try again.', 'error');
+          const submitBtn = document.querySelector('#signupForm button[type="submit"]');
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Sign Up';
+        }
       }
     });
 
@@ -233,5 +256,5 @@
     });
 
     // Initialize
-    loadUsers();
+    checkExistingAuth();
     checkRememberedLogin();

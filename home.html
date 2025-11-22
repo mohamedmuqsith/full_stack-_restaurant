@@ -25,7 +25,8 @@
       </ul>
 
       <div class="nav-btn">
-        <button>Order Now</button>
+        <button onclick="window.location.href='cart.html'">Cart</button>
+        <button onclick="window.location.href='orders.html'" style="margin-left: 10px;">My Orders</button>
       </div>
 
       <div class="menu-icon">
@@ -130,8 +131,15 @@
     <div class="footer-bottom">© 2025 Ceylon Kitchen Restaurant | All Rights Reserved</div>
   </footer>
 
-  <script src="home.js">
-
+  <script src="api.js"></script>
+  <script src="home.js"></script>
+  <script>
+    // Check authentication on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      if (!isAuthenticated()) {
+        window.location.href = 'index.html';
+      }
+    });
   </script>
 </body>
 </html>
