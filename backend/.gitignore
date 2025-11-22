@@ -28,6 +28,3 @@ Thumbs.db
 # Railway
 .railway/
 
-# Frontend build (if using build tools)
-dist/
-build/

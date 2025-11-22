@@ -1,5 +1,6 @@
-// API Configuration
-const API_BASE_URL = 'http://localhost:3000/api';
+// API Configuration - Uses config.js or defaults to localhost
+// Make sure config.js is loaded before this file in your HTML
+const API_BASE_URL = window.API_BASE_URL || 'http://localhost:3000/api';
 
 // Get stored token
 function getToken() {
@@ -184,4 +185,3 @@ function requireAuth() {
   }
   return true;
 }
-

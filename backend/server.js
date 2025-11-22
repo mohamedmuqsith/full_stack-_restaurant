@@ -16,12 +16,12 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: process.env.FRONTEND_URL || '*', // Allow frontend to access API
+  credentials: true
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-// Serve static files
-app.use(express.static(path.join(__dirname)));
 
 // API Routes
 app.use('/api/auth', authRoutes.router);
@@ -40,7 +40,12 @@ app.get('/api/health', (req, res) => {
 
 // Root endpoint
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+  res.json({
+    success: true,
+    message: 'Ceylon Kitchen API Server',
+    version: '1.0.0',
+    endpoints: '/api'
+  });
 });
 
 // Start server
